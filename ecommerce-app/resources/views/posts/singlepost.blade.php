@@ -9,19 +9,21 @@
 
 </head>
 <body>
-    @include ('nav')
-    <div class="card col-6">
-        <label>post info</label>
-        <br>
+    @include ('posts/nav')
+    <div class="card" style="width: 30rem;">
+        <div class="card-header fs-3">
+            Post info
+        </div>
         <label >Title : <p>{{$post-> title}}<p> </label>
-        <label >content : <p>{{$post-> discription}}<p> </label>
+        <label >Content : <p>{{$post-> discription}}<p> </label>
     </div>
 
-    <div class="card col-6">
-        <label>post creator info</label>
-        <br>
-        <label>creator name :<p>{{$post-> creator}}<p></label>
-        <label>created at :<p>{{$post-> created_at}}<p></label>
+    <div class="card" style="width: 30rem;">
+        <div class="card-header fs-3">
+            Post creator info
+        </div>
+        <label>Creator name :<p>{{$post-> creator}}<p></label>
+        <label>Created at :<p>{{$post-> created_at}}<p></label>
 
 
     </div>

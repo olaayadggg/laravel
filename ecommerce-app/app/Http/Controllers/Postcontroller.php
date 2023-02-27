@@ -7,61 +7,73 @@ use App\models\Post;
 
 class Postcontroller extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $posts = Post::get();
-        return view('allposts', ['Post' => $posts]);
+        return view('posts.allposts', ['Post' => $posts]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    
     public function store(Request $request)
     {
-        //
-    }
+        $validated=$request ->validate([
+            'title' => 'required',
+            'discription' => 'required',
+            'creator' => 'required',
+            'created_at' => 'required',
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
+        Post::create($request->all());
+        return redirect()->route('posts.allposts');
+    }
+    
     public function show($id)
     {
         $post=Post::find($id);
-        return view('singlepost',['post'=> $post]);
+        // or Post::where('name','ola ayad');
+        return view('posts.singlepost',['post'=> $post]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    
+    public function edit($id,Request $request)
     {
-        //
+        // dd($id,$request->all());
+        $post = Post::find($id);
+        $post->update($request->except(['_method','_token']));
+        return redirect()->route('posts.allposts');
+        // or $post ->update([
+        //     'title'=> $request->title,
+        //     'discription'=> $request->discription,
+        //     'creator'=>$request->creator,
+        //     'created_at'=>$request->created_at,
+        // ]);
+
+        // or $post->update($request->all);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    
+    public function update($id)
     {
-        //
+        $post =Post::find($id);
+        return view('posts.update',compact('post'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    
+    public function destroy($id)
     {
-        //
+        
+        $post =Post::find($id);
+        $post->delete();
+        // or Post::where('id',$id)->delete();
+        return redirect()->route('posts.allposts');
+
     }
 }
+
+

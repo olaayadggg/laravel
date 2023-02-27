@@ -8,7 +8,7 @@
           <a class="nav-link active" aria-current="page" href="/welcome">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/allposts">Posts</a>
+          <a class="nav-link active" aria-current="page" href="/posts/allposts">Posts</a>
         </li>
         <!-- <li class="nav-item">
           <a class="nav-link" href="/allposts">Posts</a>

@@ -9,13 +9,11 @@
 
 </head>
 <body>
-    @include ('nav')
-
-    <a href=""><button class="btn btn-success">create post</button></a>
-    
-
-
-    <table class="table col-6">
+    @include ('posts/nav')
+    <div style="text-align:center;">
+        <a href="{{route('posts.create')}}"><button class ="btn btn-success">create post</button></a>
+    </div>
+    <table class="table table-sm">
         <thead>
             <tr>
                 <th>title</th>
@@ -32,9 +30,19 @@
                 <td>{{$post -> creator}}</td>
                 <td>{{$post -> created_at}}</td>
                 <td>
-                <a href="" class ="btn btn-light">edit</a>
-                <a href=""class="btn btn-danger">delete</a>
-                <a href="/singlepost/{{$post->id}}" class="btn btn-primary">view</a>
+
+                <a href="{{route('posts.singlepost', $post->id)}}" class="btn btn-primary">show</a>
+
+                <form action="{{route('posts.update', $post->id)}}">
+                    <button class="btn btn-light">update</button>
+                </form>
+
+                <form action="{{route('posts.destroy', $post->id)}}" method="POST">
+                    @method('DELETE')
+                    @csrf()
+                    <button class="btn btn-danger" type="submit">delete</button>
+                </form>
+                
                 </td>
             </tr>
             @endforeach
