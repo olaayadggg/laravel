@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
-}
-function user(){
-    return $this->belongsTo(User::class);
+    // protected $table ='posts';
+    protected $guarded=[];
+    public $timestamps = false;
 }

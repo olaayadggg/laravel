@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
 use Illuminate\Http\Request;
+use App\models\User;
 
-class PostController extends Controller
+class Usercontroller extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
-        $posts=Post::get('posts');
+        $User= User::get();
+        return view('index',['User'=> $User]);
     }
 
     /**
@@ -35,16 +35,15 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(string $id)
     {
-        $post=Post::where('user_id',$id)->get();
-        return view('show',['posts'=> $post]);
+        
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(PostModel $postModel)
+    public function edit(string $id)
     {
         //
     }
@@ -52,7 +51,7 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, PostModel $postModel)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -60,7 +59,7 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(PostModel $postModel)
+    public function destroy(string $id)
     {
         //
     }
